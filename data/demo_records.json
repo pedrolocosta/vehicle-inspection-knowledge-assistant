@@ -1,0 +1,20 @@
+[
+  {
+    "id": "PROJECT-STATUS-001",
+    "kind": "project_status",
+    "topic": "MVP GNV validation status",
+    "status": "approved_for_demo",
+    "answer": "Segundo o relato do projeto, a aba MVP_GNV continha 12 requisitos estruturados e pendentes de validação pelo responsável técnico (RT) em 22/09/2026. Confirme o estado atual na planilha controlada.",
+    "provenance": "Informação do projeto, 22/09/2026",
+    "keywords": ["mvp", "status", "validation", "requirements", "inventory"]
+  },
+  {
+    "id": "DEMO-GNV-001",
+    "kind": "technical_requirement",
+    "topic": "GNV",
+    "status": "pending_rt",
+    "answer": null,
+    "provenance": "Registro fictício para demonstrar o bloqueio",
+    "keywords": ["gnv"]
+  }
+]
