@@ -1,3 +1,4 @@
+# Local runtime artifacts and secrets
 __pycache__/
 *.py[cod]
 .venv/
@@ -6,16 +7,23 @@ __pycache__/
 !.env.example
 *.log
 .DS_Store
+
+# Private communications and company procedures
 private/
 internal/
-raw_sources/
-uploads/
 conversations/
 focar/
 focar_procedures/
-*.pdf
-*.xlsx
-*.xls
+
+# Paid ABNT standards: exclude copies regardless of filename capitalization.
+# Store every licensed copy in one of these folders, even if renamed.
+licensed_standards/
+paid_standards/
+*[aA][bB][nN][tT]*
+*[nN][bB][rR]*.[pP][dD][fF]
+
+# Public documents and images are allowed; no extension-wide exclusion.
+
 *.docx
 *.jpeg
 *.jpg
