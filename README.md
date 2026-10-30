@@ -45,6 +45,34 @@ python -m unittest discover -s tests -v
 
 The first question returns a Portuguese project-status message with provenance. The second returns a Portuguese refusal because the demo has no RT-approved technical requirement. The test suite checks this behavior; it does **not** measure the accuracy of regulatory answers.
 
+## Local document retrieval pilot
+
+The experimental `rag/` pipeline indexes public, text-based PDFs with local CPU
+embeddings (`intfloat/multilingual-e5-small`). Google Drive remains the official
+collection; `data/samples/` and `storage/` are ignored local copies. No OpenAI API
+key is needed. The initial package and model downloads require internet access;
+document embedding and retrieval run on this computer.
+After the first successful model download, set `$env:HF_HUB_OFFLINE = '1'`
+in PowerShell to use the cached model without contacting Hugging Face.
+
+From PowerShell at the repository root:
+
+```powershell
+.\.venv312\Scripts\python.exe -m pip install -r requirements.txt
+New-Item -ItemType Directory -Force data/samples/public_regulations
+# Copy a public PDF with selectable text into that folder, then:
+.\.venv312\Scripts\python.exe -m rag.indexing
+.\.venv312\Scripts\python.exe -m rag.retrieval "Quais documentos sao exigidos na inspecao?"
+```
+
+The index is saved under `storage/miv_pilot_e5_small/`, and the downloaded model
+under `storage/models/`. Indexing rebuilds this pilot index; rerun it when PDFs
+change. Retrieval uses the same model and shows three passages, filenames, page
+labels, and similarity scores. Scores are not confidence or regulatory approval.
+This pilot does not generate answers, perform OCR, synchronize Drive, or validate
+normative currency and RT approval. Keep licensed standards and private records
+out of the samples folder.
+
 ## Proposed engineering path
 
 1. Verify source identity, current version, effective dates, and permitted use.
@@ -54,7 +82,7 @@ The first question returns a Portuguese project-status message with provenance. 
 5. Evaluate applicability, citations, conflict handling, abstention, and source freshness against reviewed cases.
 6. Pilot internally with an explicit escalation route and review change logs before broader use.
 
-See [roadmap](docs/roadmap.md) for deliverables and evidence to add at each milestone. **RAG, an LLM, and a production assistant have not been implemented in this starter.**
+See [roadmap](docs/roadmap.md) for deliverables and evidence to add at each milestone. **Local retrieval is experimental; answer generation and a production assistant have not been implemented.**
 
 ## Why this matters to US engineering teams
 
