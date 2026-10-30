@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv312/
 .env
 .env.*
 !.env.example
@@ -9,6 +10,11 @@ __pycache__/
 .DS_Store
 
 # Private communications and company procedures
+# Local copies only; Google Drive remains the official collection.
+storage/
+data/samples/
+data/private/
+data/inspections/
 private/
 internal/
 conversations/
